@@ -9,17 +9,6 @@ MAINTAINER Au Truong Ngoc <autk08@gmail.com>
 # This value will be in the environment of all “descendant” Dockerfile commands and can be replaced inline in many as well.
 ENV FFMPEG_VERSION=4.1
 
-RUN DIR=$(mktemp -d) && cd ${DIR} && \
-  curl -s http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz | tar zxvf - -C . && \
-  cd ffmpeg-${FFMPEG_VERSION} && \
-  ./configure \
-  --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-openssl --disable-debug && \
-  make && \
-  make install && \
-  make distclean && \
-  rm -rf ${DIR} && \
-  apk del build-base curl tar bzip2 x264 openssl nasm && rm -rf /var/cache/apk/*
-
 RUN apk update
 RUN apk add flac
 RUN apk add sox
