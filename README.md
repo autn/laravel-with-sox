@@ -10,7 +10,7 @@ Recommendation use docker-compose like below:
   version: "2"
   services:
     api_common:
-      image: autn/laravel-with-sox:1
+      image: autn08/laravel-with-sox:1
       volumes:
         - .:/var/www/app
       environment:
